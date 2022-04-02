@@ -1,3 +1,4 @@
+import 'package:dronepilotpractice/multiple_choice_quiz.dart';
 import 'package:flutter/material.dart';
 import './flashcards.dart';
 import 'package:flip_card/flip_card.dart';
@@ -32,13 +33,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _index = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _index++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +57,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text("Flashcards"),
               ),
             ),
-            ElevatedButton(
-              onPressed: _incrementCounter,
-              child: const Text("Practice Questions"),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const multipleChoiceQuiz(title: 'Practice Quiz',)),
+                  );
+                },
+                child: const Text("Practice Quiz"),
+              ),
             ),
           ],
         ),
