@@ -1,89 +1,160 @@
 import 'package:flutter/material.dart';
-import './quiz.dart';
-import './result.dart';
+import 'package:flutter/services.dart';
 
+import 'dart:async';
+import 'dart:convert';
+import 'dart:math';
+
+import './quiz.dart';
 
 /// Main function in the file
 /// 
 /// Help with the code came from https://github.com/iampawan/FlutterQuizApp
-class multipleChoiceQuiz extends StatefulWidget {
-  const multipleChoiceQuiz({Key? key, required this.title}) : super(key: key);
+class MultipleChoiceQuiz extends StatefulWidget {
+  const MultipleChoiceQuiz({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<multipleChoiceQuiz> createState() => _multipleChoiceQuiz();
+  State<MultipleChoiceQuiz> createState() => _MultipleChoiceQuiz();
 }
 
-class _multipleChoiceQuiz extends State<multipleChoiceQuiz> {
-//_ means private in dart
-  var questionIndex = 0; // Keeps track of the amount of questions given
-  var _totalScore = 0; // Keeps track of the total score of the user
-  final questions = const [
-    {
-      "questionText": "Complete this sentence: Hello _____",
-      'answers': [
-        {'text': 'dude!', 'score': 0},
-        {'text': 'world!', 'score': 2},
-        {'text': 'mom', 'score': 0},
-        {'text': 'dudes', 'score': 0},
-      ],
-    },
-    {
-      "questionText": "What does RAM stand for?",
-      'answers': [
-        {'text': 'Random Access Memory', 'score': 2},
-        {'text': 'Ram Ate Memory', 'score': 0},
-        {'text': 'Read Any Memory', 'score': 0},
-      ]
-    },
-    {
-      "questionText": "What does SSD stand for?",
-      'answers': [
-        {'text': 'Studle Swell Dude', 'score': 0},
-        {'text': 'Super Sunny Day', 'score': 0},
-        {'text': 'Solid State Door', 'score': 0},
-        {'text': 'Solid State Drive', 'score': 2},
-      ]
-    }
-  ];
-
-  /// Adds up the score if the questionIndex is less than
-  /// the total amount of questions
-  void answerQuestion(int score) {
-    if (questionIndex < questions.length) {}
-    _totalScore = _totalScore + score;
-    print(_totalScore);
-    setState(() {
-      questionIndex = questionIndex + 1;
-    });
-    print(questionIndex);
+class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
+  late Quiz quiz;
+  late List<Questions> questionList;
+  late Color c;
+  Random random = Random();
+  @override
+  void initState() {
+    super.initState();
   }
 
-  /// Resets var questionIndex and _totalScore to zero when activated
-  void resetQuiz() {
-    setState(() {
-      questionIndex = 0;
-      _totalScore = 0;
-    });
+  Future<void> fetchQuestions() async {
+    var file = await rootBundle.loadString('lib/multiple_choice_questions.json');
+    var data = await jsonDecode(file);
+    print(data);
+    c = Colors.black;
+    quiz = Quiz.fromJson(data);
+    questionList = quiz.questionList;
   }
 
-  /// Used to lay out the UI of the application
   @override
   Widget build(BuildContext context) {
-    //home is named arg
-
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Quiz App"),
+        elevation: 0.0,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Practice Quiz"),
+      body: RefreshIndicator(
+        onRefresh: fetchQuestions,
+        child: FutureBuilder(
+            future: fetchQuestions(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                  return Text('Press button to start.');
+                case ConnectionState.active:
+                case ConnectionState.waiting:
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                case ConnectionState.done:
+                  if (snapshot.hasError) return errorData(snapshot);
+                  return questionLists();
+              }
+            }),
+      ),
+    );
+  }
+
+  Padding errorData(AsyncSnapshot snapshot) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'Error: ${snapshot.error}',
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          RaisedButton(
+            child: Text("Try Again"),
+            onPressed: () {
+              fetchQuestions();
+              setState(() {});
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  ListView questionLists() {
+    return ListView.builder(
+      itemCount: questionList.length,
+      itemBuilder: (context, index) => Card(
+            color: Colors.white,
+            elevation: 0.0,
+            child: ExpansionTile(
+              title: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text(
+                      questionList[index].question,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              children: questionList[index].allAnswers.map((m) {
+                return AnswerWidget(questionList, index, m);
+              }).toList(),
+            ),
+          ),
+    );
+  }
+}
+
+class AnswerWidget extends StatefulWidget {
+  final List<Questions> results;
+  final int index;
+  final String m;
+
+  AnswerWidget(this.results, this.index, this.m);
+
+  @override
+  _AnswerWidgetState createState() => _AnswerWidgetState();
+}
+
+class _AnswerWidgetState extends State<AnswerWidget> {
+  Color c = Colors.black;
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: () {
+        setState(() {
+          if (widget.m == widget.results[widget.index].correctAnswer) {
+            c = Colors.green;
+          } else {
+            c = Colors.red;
+          }
+        });
+      },
+      title: Text(
+        widget.m,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: c,
+          fontWeight: FontWeight.bold,
         ),
-        body: questionIndex < questions.length
-            ? Quiz(answerQuestion, questions, questionIndex)
-            : Result(_totalScore, resetQuiz),
       ),
     );
   }

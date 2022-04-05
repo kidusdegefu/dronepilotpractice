@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const multipleChoiceQuiz(title: 'Practice Quiz',)),
+                        builder: (context) => const MultipleChoiceQuiz(title: 'Practice Quiz',)),
                   );
                 },
                 child: const Text("Practice Quiz"),

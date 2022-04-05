@@ -1,25 +1,53 @@
-import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
-
 /// Contains logic for how the quiz works
-class Quiz extends StatelessWidget {
-  final List<Map<String, Object>> questions;
-  final Function answerQuestion;
-  final int questionIndex;
-  const Quiz(this.answerQuestion, this.questions,
-      this.questionIndex);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Question(questions[questionIndex]['questionText'] as String),
-        ...(questions[questionIndex]['answers']
-                as List<Map<String, Object>>)
-            .map((ans) {
-          return Answer(() => answerQuestion(ans['score']), ans['text'] as String);
-        }).toList(),
-      ],
-    );
+class Quiz {
+  late int responseCode;
+  late List<Questions> questionList;
+
+  Quiz({required this.responseCode, required this.questionList});
+
+  Quiz.fromJson(Map<String, dynamic> json) {
+    responseCode = json['response_code'];
+    if (json['results'] != null) {
+      questionList = <Questions>[];
+      json['results'].forEach((v) {
+        questionList.add(new Questions.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['response_code'] = this.responseCode;
+    if (this.questionList != null) {
+      data['results'] = this.questionList.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Questions {
+  late String question;
+  late String correctAnswer;
+  late List<String> allAnswers;
+
+  Questions({
+    required this.question,
+    required this.correctAnswer,
+  });
+
+  Questions.fromJson(Map<String, dynamic> json) {
+    question = json['question'];
+    correctAnswer = json['correct_answer'];
+    allAnswers = json['incorrect_answers'].cast<String>();
+    allAnswers.add(correctAnswer);
+    allAnswers.shuffle();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['question'] = this.question;
+    data['correct_answer'] = this.correctAnswer;
+    data['incorrect_answers'] = this.allAnswers;
+    return data;
   }
 }
