@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Drone Pilot Exam Preparation'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
