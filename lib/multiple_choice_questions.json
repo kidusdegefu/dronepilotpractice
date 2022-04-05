@@ -1,33 +1,273 @@
 { "response_code": 0, "results":
   [ 
     {
-      "question": "Complete this sentence: Hello _____",
-      "correct_answer": "world!",
+      "question": "Unless otherwise specified, Federal Airways include that Class E airspace extending upward from",
+      "correct_answer": "1,200 feet above the surface up to and including 17,999 feet MSL.",
       "incorrect_answers":
       [
-        "dude!",
-        "mom",
-        "dudes"
+        "700 feet above the surface up to and including 17,999 feet MSL.",
+        "the surface up to and including 18,000 feet MSL."
       ]
     },
     {
-      "question": "What does RAM stand for?",
-      "correct_answer": "Random Access Memory",
+      "question": "A person without a part 107 remote pilot certificate may operate an sUAS for commercial operations:",
+      "correct_answer": "Under the direct supervision of a Remote PIC.",
       "incorrect_answers": 
       [
-        "Ram Ate Memory", 
-        "score",
-        "Read Any Memory"
+        "Only when visual observers participate in the operation.", 
+        "Alone, if operating during daylight hours."
       ]
     },
     {
-      "question": "What does SSD stand for?",
-      "correct_answer": "Solid State Drive",
+      "question": "TRSA Service in the terminal radar program provides",
+      "correct_answer": "sequencing and separation for participating VFR aircraft.",
       "incorrect_answers":
       [
-        "Studle Swell Dude",
-        "Super Sunny Day",
-        "Solid State Door"
+        "IFR separation (1,000 feet vertical and 3 miles lateral) between all aircraft.",
+        "warning to pilots when their aircraft are in unsafe proximity to terrain, obstructions, or other aircraft."
+      ]
+    },
+    {
+      "question": "The four forces acting on an airplane in flight are",
+      "correct_answer": "lift, weight, thrust, and drag.",
+      "incorrect_answers":
+      [
+        "lift, weight, gravity, and thrust.",
+        "lift, gravity, power, and friction."
+      ]
+    },
+    {
+      "question": "Safety is an important element for a remote pilot to consider prior to operating an unmanned aircraft system. To prevent the final \"link\" in the accident chain, a remote pilot must consider which methodology?",
+      "correct_answer": "Risk Management.",
+      "incorrect_answers":
+      [
+        "Crew Resource Management.",
+        "Safety Management System."
+      ]
+    },
+    {
+      "question": "Under what condition would a small UA not have to be registered before it is operated in the United States?",
+      "correct_answer": "When the aircraft weighs less than .55 pounds on takeoff, including everything that is on-board or attached to the aircraft.",
+      "incorrect_answers":
+      [
+        "When the aircraft has a takeoff weight that is more than .55 pounds, but less than 55 pounds, not including fuel and necessary attachments.",
+        "All small UAS need to be registered regardless of the weight of the aircraft before, during, or after the flight."
+      ]
+    },
+    {
+      "question": "(Refer to Figure 15.) What is the valid period for the TAF for KMEM?",
+      "correct_answer": "1800Z to 2400Z.",
+      "incorrect_answers":
+      [
+        "1200Z to 1200Z.",
+        "1200Z to 1800Z."
+      ]
+    },
+    {
+      "question": "The \"yellow demarcation bar\" marking indicates",
+      "correct_answer": "runway with a displaced threshold that precedes the runway.",
+      "incorrect_answers":
+      [
+        "a hold line from a taxiway to a runway.",
+        "the beginning of available runway for landing on the approach side."
+      ]
+    },
+    {
+      "question": "While operating your sUAS to do aerial photography you have a flyaway that causes $700 worth of property damage. Within how many days must you report this accident?",
+      "correct_answer": "10 days.",
+      "incorrect_answers":
+      [
+        "You are not required to report this unless requested.",
+        "30 days."
+      ]
+    },
+    {
+      "question": "(Refer to Figure 49.) The arrows that appear on the end of the north/south runway indicate that the area",
+      "correct_answer": "cannot be used for landing, but may be used for taxiing and takeoff.",
+      "incorrect_answers":
+      [
+        "may be used only for taxiing.",
+        "is usable for taxiing, takeoff, and landing."
+      ]
+    },
+    {
+      "question": "(Refer to Figure 2.) If an unmanned airplane weighs 33 pounds, what approximate weight would the airplane structure be required to support during a 30° banked turn while maintaining altitude?",
+      "correct_answer": "38 pounds.",
+      "incorrect_answers":
+      [
+        "34 pounds.",
+        "47 pounds."
+      ]
+    },
+    {
+      "question": "For aviation purposes, ceiling is defined as the height above the Earth's surface of the",
+      "correct_answer": "lowest broken or overcast layer or vertical visibility into an obscuration.",
+      "incorrect_answers":
+      [
+        "lowest reported obscuration and the highest layer of clouds reported as overcast.",
+        "lowest layer of clouds reported as scattered, broken, or thin."
+      ]
+    },
+    {
+      "question": "If there is thunderstorm activity in the vicinity of an airport at which you plan to land, which hazardous atmospheric phenomenon might be expected on the landing approach?",
+      "correct_answer": "Wind-shear turbulence.",
+      "incorrect_answers":
+      [
+        "Precipitation static.",
+        "Steady rain."
+      ]
+    },
+    {
+      "question": "An ATC radar facility issues the following advisory to a pilot flying on a heading of 360°:\n\n\"TRAFFIC 10 O'CLOCK, 2 MILES, SOUTHBOUND...\"\n\nWhere should the pilot look for this traffic?",
+      "correct_answer": "Northwest.",
+      "incorrect_answers":
+      [
+        "Northeast.",
+        "Southwest."
+      ]
+    },
+    {
+      "question": "When warm, moist, stable air flows upslope, it",
+      "correct_answer": "produces stratus type clouds.",
+      "incorrect_answers":
+      [
+        "causes showers and thunderstorms.",
+        "develops convective turbulence."
+      ]
+    },
+    {
+      "question": "According to 14 CFR part 107, what is the maximum groundspeed for a small UA?",
+      "correct_answer": "87 knots.",
+      "incorrect_answers":
+      [
+        "87 mph.",
+        "100 knots."
+      ]
+    },
+    {
+      "question": "(Refer to Figure 25, area 2.) The floor of Class B airspace at Air Park-Dallas Airport is",
+      "correct_answer": "3,000 feet MSL.",
+      "incorrect_answers":
+      [
+        "at the surface.",
+        "3,100 feet MSL."
+      ]
+    },
+    {
+      "question": "An ATC radar facility issues the following advisory to a pilot during a local flight:\n\n\"TRAFFIC 2 O'CLOCK, 5 MILES, NORTHBOUND...\"\n\nWhere should the pilot look for this traffic?",
+      "correct_answer": "Between directly ahead and 90° to the right.",
+      "incorrect_answers":
+      [
+        "Between directly ahead and 90° to the left.",
+        "Between directly behind and 90° to the right."
+      ]
+    },
+    {
+      "question": "Possible mountain wave turbulence could be anticipated when winds of 40 knots or greater blow",
+      "correct_answer": "across a mountain ridge, and the air is stable.",
+      "incorrect_answers":
+      [
+        "down a mountain valley, and the air is unstable.",
+        "parallel to a mountain peak, and the air is stable."
+      ]
+    },
+    {
+      "question": "According to 14 CFR part 107, what is required to operate a small UA within 30 minutes after official sunset?",
+      "correct_answer": "Use of anti-collision lights.",
+      "incorrect_answers":
+      [
+        "Must be operated in a rural area.",
+        "Use of a transponder."
+      ]
+    },
+    {
+      "question": "When turning onto a taxiway from another taxiway, the \"taxiway directional sign\" indicates",
+      "correct_answer": "designation and direction of taxiway leading out of an intersection.",
+      "incorrect_answers":
+      [
+        "direction to the take-off runway.",
+        "designation and direction of exit taxiway from runway."
+      ]
+    },
+    {
+      "question": "Which of the following types of operations are excluded from the requirements in part 107?",
+      "correct_answer": "Model aircraft for hobby use.",
+      "incorrect_answers":
+      [
+        "UAS used for motion picture filming.",
+        "Quadcopter capturing aerial imagery for crop monitoring."
+      ]
+    },
+    {
+      "question": "Exhaust plumes are most dangerous when",
+      "correct_answer": "the surrounding air is calm and cold.",
+      "incorrect_answers":
+      [
+        "they are visible.",
+        "they come from larger towers."
+      ]
+    },
+    {
+      "question": "(Refer to Figure 23, area 3.) What is the height of the lighted obstacle approximately 6 nautical miles southwest of Savannah International?",
+      "correct_answer": "1,534 feet AGL.",
+      "incorrect_answers":
+      [
+        "1,549 feet MSL.",
+        "1,500 feet MSL."
+      ]
+    },
+    {
+      "question": "Which weather conditions should be expected beneath a low-level temperature inversion layer when the relative humidity is high?",
+      "correct_answer": "Smooth air, poor visibility, fog, haze, or low clouds.",
+      "incorrect_answers":
+      [
+        "Light wind shear, poor visibility, haze, and light rain.",
+        "Turbulent air, poor visibility, fog, low stratus type clouds, and showery precipitation."
+      ]
+    },
+    {
+      "question": "A pilot can expect a wind-shear zone in a temperature inversion whenever the windspeed at 2,000 to 4,000 feet above the surface is at least",
+      "correct_answer": "25 knots.",
+      "incorrect_answers":
+      [
+        "10 knots.",
+        "15 knots."
+      ]
+    },
+    {
+      "question": "Which weather phenomenon is always associated with a thunderstorm?",
+      "correct_answer": "Lightning.",
+      "incorrect_answers":
+      [
+        "Heavy rain.",
+        "Hail."
+      ]
+    },
+    {
+      "question": "(Refer to Figure 22, area 3.) Determine the approximate latitude and longitude of Shoshone County Airport.",
+      "correct_answer": "47°33'N - 116°11'W.",
+      "incorrect_answers":
+      [
+        "47°02'N - 116°11'W.",
+        "47°32'N - 116°41'W."
+      ]
+    },
+    {
+      "question": "(Refer to Figure 20, area 1.) The NALF Fentress (NFE) Airport is in what type of airspace?",
+      "correct_answer": "Class E.",
+      "incorrect_answers":
+      [
+        "Class C.",
+        "Class G."
+      ]
+    },
+    {
+      "question": "What is density altitude?",
+      "correct_answer": "The pressure altitude corrected for non-standard temperature.",
+      "incorrect_answers":
+      [
+        "The height above the standard datum plane.",
+        "The altitude read directly from the altimeter."
       ]
     }
   ]
