@@ -19,6 +19,7 @@ class MultipleChoiceQuiz extends StatefulWidget {
   State<MultipleChoiceQuiz> createState() => _MultipleChoiceQuiz();
 }
 
+/// Contains the logic in displaying the quiz and its questions
 class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
   late Quiz quiz;
   late List<Questions> questionList;
@@ -38,11 +39,13 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
     questionList = quiz.questionList;
   }
 
+  /// Displays the app bar and the ability to refresh
+  /// the page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Quiz App"),
+        title: const Text("Quiz App"),
         elevation: 0.0,
       ),
       body: RefreshIndicator(
@@ -52,10 +55,10 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
-                  return Text('Press button to start.');
+                  return const Text('Press button to start.');
                 case ConnectionState.active:
                 case ConnectionState.waiting:
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 case ConnectionState.done:
@@ -67,6 +70,8 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
     );
   }
 
+  /// Displays an error if the application cannot
+  /// fetch questions from the .json file
   Padding errorData(AsyncSnapshot snapshot) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
@@ -76,11 +81,11 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
           Text(
             'Error: ${snapshot.error}',
           ),
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           RaisedButton(
-            child: Text("Try Again"),
+            child: const Text("Try Again"),
             onPressed: () {
               fetchQuestions();
               setState(() {});
@@ -91,6 +96,7 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
     );
   }
 
+  /// Lays out and displays questions from a .json file
   ListView questionLists() {
     return ListView.builder(
       itemCount: questionList.length,
@@ -106,7 +112,7 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
                   children: <Widget>[
                     Text(
                       questionList[index].question,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -123,19 +129,23 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
   }
 }
 
+/// This class manages the answer widget and the display of it
 class AnswerWidget extends StatefulWidget {
   final List<Questions> results;
   final int index;
   final String m;
 
-  AnswerWidget(this.results, this.index, this.m);
+  const AnswerWidget(this.results, this.index, this.m, {Key? key}) : super(key: key);
 
   @override
   _AnswerWidgetState createState() => _AnswerWidgetState();
 }
 
+/// Displays either a correct and incorrect result depending on what the user
+/// chooses
 class _AnswerWidgetState extends State<AnswerWidget> {
   Color c = Colors.black;
+  int score = 0;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -143,6 +153,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
         setState(() {
           if (widget.m == widget.results[widget.index].correctAnswer) {
             c = Colors.green;
+
           } else {
             c = Colors.red;
           }

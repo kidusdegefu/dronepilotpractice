@@ -25,6 +25,8 @@ class Quiz {
   }
 }
 
+/// Takes data from the .json file and stores them into variables.
+/// These variables are then stored in an List
 class Questions {
   late String question;
   late String correctAnswer;
