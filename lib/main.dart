@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(bottom: 10),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(bottom: 10),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
