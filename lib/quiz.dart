@@ -10,16 +10,17 @@ class Quiz {
     if (json['results'] != null) {
       questionList = <Questions>[];
       json['results'].forEach((v) {
-        questionList.add(new Questions.fromJson(v));
+        questionList.add(Questions.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['response_code'] = this.responseCode;
-    if (this.questionList != null) {
-      data['results'] = this.questionList.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['response_code'] = responseCode;
+    // ignore: unnecessary_null_comparison
+    if (questionList != null) {
+      data['results'] = questionList.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -46,10 +47,10 @@ class Questions {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['question'] = this.question;
-    data['correct_answer'] = this.correctAnswer;
-    data['incorrect_answers'] = this.allAnswers;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['question'] = question;
+    data['correct_answer'] = correctAnswer;
+    data['incorrect_answers'] = allAnswers;
     return data;
   }
 }
