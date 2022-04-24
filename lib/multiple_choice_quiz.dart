@@ -33,7 +33,7 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
   Future<void> fetchQuestions() async {
     var file = await rootBundle.loadString('lib/multiple_choice_questions.json');
     var data = await jsonDecode(file);
-    print(data);
+    //print(data);
     c = Colors.black;
     quiz = Quiz.fromJson(data);
     questionList = quiz.questionList;
@@ -65,7 +65,8 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
                   if (snapshot.hasError) return errorData(snapshot);
                   return questionLists();
               }
-            }),
+            }
+          ),
       ),
     );
   }
@@ -84,7 +85,7 @@ class _MultipleChoiceQuiz extends State<MultipleChoiceQuiz> {
           const SizedBox(
             height: 20.0,
           ),
-          RaisedButton(
+          ElevatedButton(
             child: const Text("Try Again"),
             onPressed: () {
               fetchQuestions();
@@ -141,7 +142,7 @@ class AnswerWidget extends StatefulWidget {
   _AnswerWidgetState createState() => _AnswerWidgetState();
 }
 
-/// Displays either a correct and incorrect result depending on what the user
+/// Displays either a correct or incorrect result depending on what the user
 /// chooses
 class _AnswerWidgetState extends State<AnswerWidget> {
   Color c = Colors.black;
@@ -153,7 +154,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
         setState(() {
           if (widget.m == widget.results[widget.index].correctAnswer) {
             c = Colors.green;
-
+            score = score + 1;
           } else {
             c = Colors.red;
           }
@@ -167,6 +168,66 @@ class _AnswerWidgetState extends State<AnswerWidget> {
           fontWeight: FontWeight.bold,
         ),
       ),
+    );
+  }
+}
+
+class ResultsWidget extends StatefulWidget {
+  const ResultsWidget({Key? key}) : super(key: key);
+  
+  @override
+  _ResultsWidgetState createState() => _ResultsWidgetState();
+}
+
+class _ResultsWidgetState extends State<ResultsWidget> {
+  int score = 1;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: ElevatedButton(
+                onPressed: () {
+                  fetchResults();
+                },
+                child: const Text("Submit Answer"),
+              ),
+            ),
+          ],
+        ),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget fetchResults () {
+  String totalScore = score.toString();
+    return ListView.builder(
+      itemBuilder: (context, index) => Card(
+              color: Colors.white,
+              elevation: 0.0,
+              child: ExpansionTile(
+                title: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(
+                        "Your score is:" + totalScore,
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
     );
   }
 }
