@@ -1,3 +1,4 @@
+//Donaven Harrington
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
@@ -14,6 +15,10 @@ class Quizzler extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey.shade900,
+        appBar: AppBar(
+          leading: const Icon(Icons.arrow_back_outlined),
+          title: const Text('True False Quiz'),
+        ),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -88,7 +93,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestionText(),
+                ('${quizBrain.getQuestionNumber()}\n ${quizBrain.getQuestionText()}'),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
