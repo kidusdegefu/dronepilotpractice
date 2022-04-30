@@ -9,6 +9,8 @@ import './quiz.dart';
 
 /// Main function in the file
 /// 
+/// Author: Evan McCarthy
+/// 
 /// Help with the code came from https://github.com/iampawan/FlutterQuizApp
 class MultipleChoiceQuiz extends StatefulWidget {
   const MultipleChoiceQuiz({Key? key, required this.title}) : super(key: key);
