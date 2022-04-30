@@ -1,4 +1,7 @@
 /// Contains logic for how the quiz works
+/// 
+/// Author: Evan McCarthy
+/// 
 class Quiz {
   late int responseCode;
   late List<Questions> questionList;
