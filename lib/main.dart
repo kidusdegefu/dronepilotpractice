@@ -1,4 +1,5 @@
 import 'package:dronepilotpractice/multiple_choice_quiz.dart';
+import 'package:dronepilotpractice/true_false_quiz.dart';
 import 'package:flutter/material.dart';
 import './flashcards.dart';
 import 'package:flip_card/flip_card.dart';
@@ -68,7 +69,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         builder: (context) => const MultipleChoiceQuiz(title: 'Practice Quiz',)),
                   );
                 },
-                child: const Text("Practice Quiz"),
+                child: const Text("Multiple Choice Quiz"),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Quizzler()),
+                  );
+                },
+                child: const Text("True/False Quiz"),
               ),
             ),
           ],
