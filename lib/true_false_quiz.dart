@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'quiz_brain.dart';
+import '../quiz_brain.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -21,7 +21,7 @@ class Quizzler extends StatelessWidget {
         ),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: QuizPage(),
           ),
         ),
@@ -49,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
               "You've reach the end of the quiz. If you wish to play again, press reset button below",
           buttons: [
             DialogButton(
-              child: Text(
+              child: const Text(
                 "Reset Quiz",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
@@ -67,12 +67,12 @@ class _QuizPageState extends State<QuizPage> {
         ).show();
       }
       if (userAnswer == correctAnswer) {
-        scoreKeeper.add(Icon(
+        scoreKeeper.add(const Icon(
           Icons.check,
           color: Colors.green,
         ));
       } else {
-        scoreKeeper.add(Icon(
+        scoreKeeper.add(const Icon(
           Icons.close,
           color: Colors.red,
         ));
@@ -83,6 +83,7 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
+    Color c = Colors.white;
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,12 +91,12 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           flex: 5,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
                 ('${quizBrain.getQuestionNumber()}\n ${quizBrain.getQuestionText()}'),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,
                 ),
@@ -105,11 +106,10 @@ class _QuizPageState extends State<QuizPage> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
-              color: Colors.green,
-              child: Text(
+            padding: const EdgeInsets.all(15.0),
+            child: TextButton(
+              
+              child: const Text(
                 'True',
                 style: TextStyle(
                   color: Colors.white,
@@ -119,6 +119,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked true.
                 checkAnswer(true);
+                c = Colors.green;
                 quizBrain.isFinished();
               },
             ),
@@ -126,10 +127,9 @@ class _QuizPageState extends State<QuizPage> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
-              child: Text(
+            padding: const EdgeInsets.all(15.0),
+            child: TextButton(
+              child: const Text(
                 'False',
                 style: TextStyle(
                   fontSize: 20.0,
@@ -139,6 +139,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked false.
                 checkAnswer(false);
+                c = Colors.red;
                 quizBrain.isFinished();
               },
             ),
