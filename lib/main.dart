@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import './flashcards.dart';
 import 'package:flip_card/flip_card.dart';
 
+import 'faa.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -35,7 +37,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const MultipleChoiceQuiz(title: 'Practice Quiz',)),
+                        builder: (context) => const MultipleChoiceQuiz(
+                              title: 'Practice Quiz',
+                            )),
                   );
                 },
                 child: const Text("Multiple Choice Quiz"),
@@ -78,11 +81,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => Quizzler()),
+                    MaterialPageRoute(builder: (context) => Quizzler()),
                   );
                 },
                 child: const Text("True/False Quiz"),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Demo()),
+                  );
+                },
+                child: const Text("FAA"),
               ),
             ),
           ],
