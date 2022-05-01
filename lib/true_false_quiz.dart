@@ -12,18 +12,15 @@ void main() => runApp(Quizzler());
 class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.grey.shade900,
-        appBar: AppBar(
-          leading: const Icon(Icons.arrow_back_outlined),
-          title: const Text('True False Quiz'),
-        ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: QuizPage(),
-          ),
+    return Scaffold(
+      backgroundColor: Colors.grey.shade900,
+      appBar: AppBar(
+        title: const Text('True or False Quiz'),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: QuizPage(),
         ),
       ),
     );
@@ -108,7 +105,6 @@ class _QuizPageState extends State<QuizPage> {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
-              
               child: const Text(
                 'True',
                 style: TextStyle(
